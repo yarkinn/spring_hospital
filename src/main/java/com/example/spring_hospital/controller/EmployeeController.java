@@ -29,6 +29,11 @@ public class EmployeeController {
 
     @DeleteMapping(path = "/employees/{employeeId}")
     public void deleteEmployee( @PathVariable("employeeId") int employeeId){
-        employeeRepository.deleteById(employeeId);
+        try {
+            employeeRepository.deleteById(employeeId);
+        }catch (Exception e){
+            System.out.println("Employee doesn't exist");
+        }
+
     }
 }
