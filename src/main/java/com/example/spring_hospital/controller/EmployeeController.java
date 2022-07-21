@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class EmployeeController {
 
 
@@ -27,10 +27,8 @@ public class EmployeeController {
             employeeRepository.save(employee);
         }
 
-        @DeleteMapping("/employees")
-        public void removeEmployee( int id) {
-        employeeRepository.deleteById(id);
-
-
+    @DeleteMapping(path = "/employees/{employeeId}")
+    public void deleteEmployee( @PathVariable("employeeId") int employeeId){
+        employeeRepository.deleteById(employeeId);
     }
 }
